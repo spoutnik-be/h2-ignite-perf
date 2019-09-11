@@ -1,0 +1,72 @@
+DROP TABLE IF EXISTS L;
+
+CREATE TABLE L (
+	id BIGINT primary key not null, 
+	PR VARCHAR(36), 
+	RR VARCHAR(36), 
+	CR VARCHAR(36), 
+	IPR VARCHAR(36), 
+	ET INT);
+
+DROP TABLE  IF EXISTS M;
+
+CREATE TABLE M (
+	id BIGINT primary key not null, 
+	FO INT, 
+	CR VARCHAR(36));
+
+DROP TABLE  IF EXISTS P;
+
+CREATE TABLE P (
+	id BIGINT primary key not null, 
+	PR VARCHAR(36), 
+	PT VARCHAR(3), 
+	PTPR VARCHAR(36), 
+	IPR VARCHAR(36));
+
+DROP TABLE  IF EXISTS N;
+
+CREATE TABLE N (
+	id BIGINT primary key not null, 
+	A INT, 
+	PT INT, 
+	PR VARCHAR(36));
+
+DROP TABLE  IF EXISTS F;
+
+CREATE TABLE F (
+	id BIGINT primary key not null, 
+	O INT);
+
+DROP TABLE  IF EXISTS R;
+
+CREATE TABLE R (
+	id BIGINT primary key not null, 
+	RPR VARCHAR(36), 
+	IPR VARCHAR(36));
+
+DROP TABLE  IF EXISTS S;
+
+CREATE TABLE S (
+	id BIGINT primary key not null, 
+	PR VARCHAR(36), 
+	ET INT, 
+	RR VARCHAR(36), 
+	IPR VARCHAR(36));
+
+DROP TABLE  IF EXISTS H;
+
+CREATE TABLE H (
+	id BIGINT primary key not null, 
+	HR VARCHAR(36), 
+	HI INT, 
+	PT INT, 
+	PR VARCHAR(36));
+
+DROP TABLE  IF EXISTS C;
+
+CREATE TABLE C (
+	id BIGINT primary key not null, 
+	CR VARCHAR(36), 
+	UPR  VARCHAR(36), 
+	FPR  VARCHAR(36));

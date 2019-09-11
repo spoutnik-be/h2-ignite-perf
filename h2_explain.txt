@@ -1,0 +1,69 @@
+ELECT
+    "L0"."PR",
+    "M"."CR",
+    "N"."PR",
+    "L1"."RR",
+    "F"."O",
+    "R"."RPR",
+    "S"."PR",
+    "H"."PR",
+    "C0"."CR",
+    "C1"."CR",
+    "C2"."CR"
+FROM "PUBLIC"."L" "L0"
+    /* PUBLIC.L.tableScan */
+INNER JOIN "PUBLIC"."M"
+    /* PUBLIC.M2_IDX: CR = L0.IPR */
+    ON 1=1
+    /* WHERE M.CR = L0.IPR
+    */
+LEFT OUTER JOIN "PUBLIC"."F"
+    /* PUBLIC.F_IDX: O = M.FO */
+    ON "F"."O" = "M"."FO"
+LEFT OUTER JOIN "PUBLIC"."R"
+    /* PUBLIC.R_IDX: RPR = L0.RR */
+    ON "R"."RPR" = "L0"."RR"
+LEFT OUTER JOIN "PUBLIC"."S"
+    /* PUBLIC.S_IDX: ET = 2
+        AND RR = L0.RR
+     */
+    ON ("S"."ET" = 2)
+    AND ("S"."RR" = "L0"."RR")
+LEFT OUTER JOIN "PUBLIC"."P"
+    /* PUBLIC.P_IDX: PT = 3
+        AND PTPR = L0.PR
+     */
+    ON ("P"."PT" = 3)
+    AND ("P"."PTPR" = "L0"."PR")
+LEFT OUTER JOIN "PUBLIC"."N"
+    /* PUBLIC.N_IDX: A = 1
+        AND PT = 3
+        AND PR = L0.PR
+     */
+    ON ("N"."A" = 1)
+    AND (("N"."PT" = 3)
+    AND ("N"."PR" = "L0"."PR"))
+LEFT OUTER JOIN "PUBLIC"."L" "L1"
+    /* PUBLIC.L_IDX: ET = 2
+        AND RR = L0.RR
+     */
+    ON ("L1"."ET" = 2)
+    AND ("L1"."RR" = "L0"."RR")
+LEFT OUTER JOIN "PUBLIC"."H"
+    /* PUBLIC.H_IDX: HI = 1
+        AND PT = 3
+        AND PR = L0.PR
+     */
+    ON ("H"."HI" = 1)
+    AND (("H"."PT" = 3)
+    AND ("H"."PR" = "L0"."PR"))
+LEFT OUTER JOIN "PUBLIC"."C" "C0"
+    /* PUBLIC.C_IDX: CR = L0.CR */
+    ON "C0"."CR" = "L0"."CR"
+LEFT OUTER JOIN "PUBLIC"."C" "C1"
+    /* PUBLIC.C_IDX: CR = C0.UPR */
+    ON "C1"."CR" = "C0"."UPR"
+LEFT OUTER JOIN "PUBLIC"."C" "C2"
+    /* PUBLIC.C_IDX: CR = C0.FPR */
+    ON "C2"."CR" = "C0"."FPR"
+WHERE "M"."CR" = "L0"."IPR"
