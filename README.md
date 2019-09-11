@@ -19,3 +19,5 @@ Iterating over the JDBC result set:
 - Around 2s for the H2 server mode
 - Around 5s for Oracle
 - Around 1s for Ignite
+
+.
