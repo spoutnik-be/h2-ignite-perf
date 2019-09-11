@@ -1,5 +1,5 @@
 
-SET @APATH='c:/temp/sgperf/h2-stackoverflow/data/';
+SET @APATH='./data/';
 
 INSERT INTO C SELECT * from CSVREAD ( @APATH || 'C.csv', 'ID,CR,UPR,FPR');
 
